@@ -13,7 +13,7 @@ def main_view(request:HttpRequest):
 
 def contact_view(request:HttpRequest):
 
-    return render(request, 'ccontact.html')
+    return render(request, 'main/contact.html')
 
 
 

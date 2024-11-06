@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Home{%endblock %}
+
+{% block content %}
+
+<main>
+    <div class="home">
+        <nav class="home-main-text">
+            <h1>Planter</h1>
+            <h2>Plants Databased For Plants Lover</h2>
+        </nav>
+        
+        <div class="search-form">
+            <form class="form-container">
+                <input type="search" class="form-control" id="search" placeholder="Search For Plant...">
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Plants Section -->
+    <section class="plants-section">
+
+        <div class="plant-card">
+            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
+            <h3>Plant 2</h3>
+            <p>Brief about plant</p>
+            <p>Tree</p>
+        </div>
+
+        <div class="plant-card">
+            <img src="{% static 'images/plant2.jpg' %}" alt="Plant 2">
+            <h3>Plant 3</h3>
+            <p>Brief about plant</p>
+            <p>Fruit</p>
+        </div>
+
+        <div class="plant-card">
+            <img src="{% static 'images/plant3.jpg' %}" alt="Plant 3">
+            <h3>Plant 4</h3>
+            <p>Brief about plant</p>
+            <p>Vegetables</p>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

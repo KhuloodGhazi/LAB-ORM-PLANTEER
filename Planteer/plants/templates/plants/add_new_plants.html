@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}New Plant{%endblock%}
+
+{% block content %}
+
+<div class="add-plant-container">
+    <h1>Add a New Plant</h1>
+    
+    <form class="add-plant-form" action="/submit-plant" method="post" enctype="multipart/form-data">
+        <!-- Plant Name -->
+        <div class="form-group">
+            <label for="plant-name">Plant Name</label>
+            <input type="text" id="plant-name" name="plant-name" placeholder="Enter plant name" required>
+        </div>
+        
+        <!-- Scientific Name -->
+        <div class="form-group">
+            <label for="scientific-name">Scientific Name</label>
+            <input type="text" id="scientific-name" name="scientific-name" placeholder="Enter scientific name">
+        </div>
+      
+      <!-- Category -->
+       <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+            <option value="Flower">Flower</option>
+            <option value="Tree">Tree</option>
+            <option value="Shrub">Shrub</option>
+            <option value="Herb">Herb</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Fruit">Fruit</option>
+        </select>
+        </div>
+        
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Enter a description of the plant" rows="4"></textarea>
+        </div>
+        
+        <!-- Image Upload -->
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
+        </div>
+        
+        <!-- Submit Button -->
+         <button type="submit" class="submit-button">Add Plant</button>
+    </form>
+</div>
+  
+
+
+
+
+
+
+{% endblock %}
