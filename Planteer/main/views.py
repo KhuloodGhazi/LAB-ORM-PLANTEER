@@ -14,6 +14,19 @@ def main_view(request:HttpRequest):
 
 def contact_view(request:HttpRequest):
 
+    if request.method == "POST":
+        new_message = Contact(
+            first_name=request.POST["first_name"],
+            last_name=request.POST["last_name"],
+            email=request.POST["email"],
+            message=request.POST["message"]
+            )
+        
+        new_message.save()
+
+        return redirect("main:message_view")
+
+
     return render(request, 'main/contact.html')
 
 
@@ -21,4 +34,6 @@ def contact_view(request:HttpRequest):
 
 def message_view(request:HttpRequest):
 
-    return render(request, 'main/message.html')
+    messages = Contact.objects.all()
+
+    return render(request, 'main/message.html', {"messages":messages})

@@ -7,5 +7,5 @@ app_name = "main"
 urlpatterns = [
     path("", views.main_view, name="main_view"),
     path("contact/", views.contact_view, name="contact_view"),
-    path("contact/messages/", views.message_view, name="message_view"),
+    path("messages/", views.message_view, name="message_view"),
 ]

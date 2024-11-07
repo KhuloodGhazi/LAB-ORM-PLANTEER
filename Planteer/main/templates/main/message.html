@@ -11,14 +11,16 @@
     
     <div class="messages-grid">
       <!-- Message Card -->
+       {% for messages in messages %}
       <div class="message-card">
         <div class="material-symbols-outlined">account_circle</div>
         <div class="message-content">
-          <h2>Ahmed Mohammed</h2>
-          <a href="mailto:moh@gmail.com">moh@gmail.com</a>
-          <p>Body text for whatever you’d like to suggest. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+          <h2>{{messages.first_name}} {{messages.last_name}}</h2>
+          <a href="{{messages.email}}">{{ messages.email }}</a>
+          <p>{{messages.message}}</p>
         </div>
       </div>
+      {%endfor%}
     </div>
   </div>
 

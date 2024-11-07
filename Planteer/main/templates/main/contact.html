@@ -12,27 +12,28 @@
     <h1>Contact us</h1>
     <p class="subheading">Subheading for description or instructions</p>
 
-    <form>
+    <form action="{% url 'main:contact_view'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
         <div class="form-row">
             <div class="form-group">
                 <label for="first-name">First name</label>
-                <input type="text" id="first-name" placeholder="Jane" />
+                <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
             </div>
             
             <div class="form-group">
                 <label for="last-name">Last name</label>
-                <input type="text" id="last-name" placeholder="Smitherton" />
+                <input type="text" id="last-name" name="last_name" placeholder="Smitherton" required />
             </div>
         </div>
         
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" id="email" placeholder="email@janesfakedomain.net"/>
+            <input type="email" id="email" name="email" placeholder="email@janesfakedomain.net" required/>
         </div>
         
         <div class="form-group">
             <label for="message">Your message</label>
-            <textarea id="message" placeholder="Enter your question or message"></textarea>
+            <textarea id="message" name="message" placeholder="Enter your Question or Message" required></textarea>
         </div>
         
         <button type="submit" class="submit-button-contact">Submit</button>

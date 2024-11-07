@@ -29,8 +29,10 @@
         </div>
         
         <div class="all-plants-link">
-            <a href="{% url 'plants:all_plants_view' %}"><h5 class="more-link">More</h5>
-                <span class="material-symbols-outlined">arrow_forward</span></a>
+            <a href="{% url 'plants:all_plants_view' %}">
+                <h5 class="more-link">More</h5>
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
         </div>
     </div>
     
@@ -41,19 +43,6 @@
             <p>Brief about plant</p>
             <p>Tree</p>
         </div>
-        <div class="plant-card">
-            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
-            <h3>Plant 2</h3>
-            <p>Brief about plant</p>
-            <p>Tree</p>
-        </div>
-        <div class="plant-card">
-            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
-            <h3>Plant 2</h3>
-            <p>Brief about plant</p>
-            <p>Tree</p>
-        </div>
-        
     </section>
 </main>
 
