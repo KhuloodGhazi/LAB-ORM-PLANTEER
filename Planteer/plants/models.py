@@ -5,22 +5,22 @@ from django.utils import timezone
 
 class Plant(models.Model):
     class CategoryChoices(models.TextChoices):
-        TECHNOLOGY = 'TECH', 'Technology'
-        BUSINESS = 'BUS', 'Business'
-        LIFESTYLE = 'LIFE', 'Lifestyle'
-        EDUCATION = 'EDU', 'Education'
-        HEALTH = 'HEALTH', 'Health'
-        ENTERTAINMENT = 'ENT', 'Entertainment'
+        FLOWER = 'Flower', 'Flower'
+        TREE = 'Tree', 'Tree'
+        SHRUB = 'Shrub', 'Shrub'
+        HERB = 'Herb', 'Herb'
+        VEGETABLE = 'Vegetable', 'Vegetable'
+        FRUIT = 'Fruit', 'Fruit'
 
-    name = models.CharField(max_length=1024)
-    about = models.TextField()
-    used_for = models.TextField()
-    image = models.ImageField(upload_to="blog_photos/", default="blog_photos/code.jpg")
-    is_edible = models.BooleanField(default=True) #search more(choies)
+    name = models.CharField(max_length=1024) #
+    about = models.TextField() #
+    used_for = models.TextField() #
+    image = models.ImageField(upload_to="images/", default="") #
+    native_locations = models.CharField(max_length=200) #
+    is_edible = models.BooleanField(default=False) #search more(choies)
     create_at = models.DateTimeField(auto_now_add=True) #search more
     category = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=CategoryChoices.choices,
-        default=CategoryChoices.TECHNOLOGY
     )
 

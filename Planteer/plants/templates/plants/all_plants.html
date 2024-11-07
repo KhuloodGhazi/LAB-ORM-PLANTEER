@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}All Plants{%endblock %}
+
+{% block content %}
+
+<div><h1 class="all-plants-page">All Plants</h1></div>
+<div class="plants-section">
+    <div class="plant-card">
+        <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
+        <h3>Plant 2</h3>
+        <p>Brief about plant</p>
+        <p>Tree</p>
+    </div>
+
+{% endblock %}

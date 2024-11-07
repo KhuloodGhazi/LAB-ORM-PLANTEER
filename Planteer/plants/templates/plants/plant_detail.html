@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Plant Details{%endblock %}
+
+{% block content %}
+
+<div class="plant-details">
+    <img src="{{ plant.main_image.url }}" alt="{{ plant.name }}" class="plant-image">
+    <h1>{{ plant.name }}</h1>
+    <p class="category">{{ plant.category }}</p>
+    <p class="brief">{{ plant.brief_description }}</p>
+    <p><strong>Native to:</strong> {{ plant.native_locations }}</p>
+    <p><strong>Is Edible:</strong> {% if plant.is_edible %} Yes {% else %} No {% endif %}</p>
+    <p><strong>Used For:</strong> {{ plant.used_for }}</p>
+</div>
+
+<div class="related-plants">
+    <h2>Related Plants</h2>
+    <div class="related-plants-grid">
+        {% for related in related_plants %}
+        <div class="related-plant-card">
+            <img src="{{ related.main_image.url }}" alt="{{ related.name }}">
+            <h3>{{ related.name }}</h3>
+            <p>{{ related.brief_description }}</p>
+            <p class="category">{{ related.category }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+{% endblock %}

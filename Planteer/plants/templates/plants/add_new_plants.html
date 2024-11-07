@@ -6,50 +6,67 @@
 
 {% block content %}
 
-<div class="add-plant-container">
+
+
+<div class="add-plant-page">
     <h1>Add a New Plant</h1>
     
-    <form class="add-plant-form" action="/submit-plant" method="post" enctype="multipart/form-data">
-        <!-- Plant Name -->
-        <div class="form-group">
-            <label for="plant-name">Plant Name</label>
-            <input type="text" id="plant-name" name="plant-name" placeholder="Enter plant name" required>
-        </div>
+    <div class="add-plant-container">
         
-        <!-- Scientific Name -->
-        <div class="form-group">
-            <label for="scientific-name">Scientific Name</label>
-            <input type="text" id="scientific-name" name="scientific-name" placeholder="Enter scientific name">
-        </div>
-      
-      <!-- Category -->
-       <div class="form-group">
-        <label for="category">Category</label>
-        <select id="category" name="category">
-            <option value="Flower">Flower</option>
-            <option value="Tree">Tree</option>
-            <option value="Shrub">Shrub</option>
-            <option value="Herb">Herb</option>
-            <option value="Vegetable">Vegetable</option>
-            <option value="Fruit">Fruit</option>
-        </select>
-        </div>
-        
-        <!-- Description -->
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="Enter a description of the plant" rows="4"></textarea>
-        </div>
-        
-        <!-- Image Upload -->
-        <div class="form-group">
-            <label for="image">Upload Image</label>
-            <input type="file" id="image" name="image" accept="image/*">
-        </div>
-        
-        <!-- Submit Button -->
-         <button type="submit" class="submit-button">Add Plant</button>
-    </form>
+        <form class="add-plant-form" action="{% url 'plants:new_plants_view'%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="plant-name">Plant Name</label>
+                <input type="text" id="plant-name" name="plant-name" placeholder="Enter plant name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Native">Native To:</label>
+                <input type="text" id="Native" name="Native" placeholder="Enter The Plant Country (Where it is Originally from?)">
+            </div>
+            
+            <div class="form-group">
+                <label>Is Edible:</label>
+                <div class="check-container">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">No</label>
+
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="useability">Used For:</label>
+                <input type="text" id="useability" name="useability" placeholder="Enter What The Plant Used For" required>
+            </div>
+            
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="Flower">Flower</option>
+                    <option value="Tree">Tree</option>
+                    <option value="Shrub">Shrub</option>
+                    <option value="Herb">Herb</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Fruit">Fruit</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter a description of the plant" rows="4"></textarea required>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="submit-button">Add Plant</button>
+        </form>
+    </div>
 </div>
   
 

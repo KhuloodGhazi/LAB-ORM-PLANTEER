@@ -22,28 +22,38 @@
     </div>
 
     <!-- Plants Section -->
+    <div class="all-plants">
+        <div class="all-plants-text">
+            <h2>Plants</h2>
+            <h5>Learn More About Plants</h5>
+        </div>
+        
+        <div class="all-plants-link">
+            <a href="{% url 'plants:all_plants_view' %}"><h5 class="more-link">More</h5>
+                <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+    </div>
+    
     <section class="plants-section">
-
         <div class="plant-card">
             <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
             <h3>Plant 2</h3>
             <p>Brief about plant</p>
             <p>Tree</p>
         </div>
-
         <div class="plant-card">
-            <img src="{% static 'images/plant2.jpg' %}" alt="Plant 2">
-            <h3>Plant 3</h3>
+            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
+            <h3>Plant 2</h3>
             <p>Brief about plant</p>
-            <p>Fruit</p>
+            <p>Tree</p>
         </div>
-
         <div class="plant-card">
-            <img src="{% static 'images/plant3.jpg' %}" alt="Plant 3">
-            <h3>Plant 4</h3>
+            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
+            <h3>Plant 2</h3>
             <p>Brief about plant</p>
-            <p>Vegetables</p>
+            <p>Tree</p>
         </div>
+        
     </section>
 </main>
 
