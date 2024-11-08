@@ -7,14 +7,16 @@
 {% block content %}
 
 <div class="all-plants-container">
-    <h1>All Plants</h1>
-    <p class="subheading">Explore our plant database to learn more about various plants.</p>
+    <div class="all-plants-text-2">
+        <h1>All Plants</h1>
+        <p class="subheading">Explore our plant database to learn more about various plants.</p>
+    </div>
 
     <section class="all-plants-section">
         {% for plant in plant %}
             <div class="all-plant-card">
                 <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="all-plant-image">
-                <h3>{{ plant.name }}</h3>
+                <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ plant.name }}</h3></a>
                 <p>{{ plant.about }}</p>
                 <p class="all-category">{{ plant.category }}</p>
             </div>

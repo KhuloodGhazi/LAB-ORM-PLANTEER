@@ -2,35 +2,46 @@
 
 {% load static %}
 
-{% block title %}Plant Details{%endblock %}
+{% block title %}{{ plant.name }}{% endblock %}
 
 {% block content %}
 
-<div class="plant-details">
-    <img src="{{ plant.main_image.url }}" alt="{{ plant.name }}" class="plant-image">
-    <h1>{{ plant.name }}</h1>
-    <p class="category">{{ plant.category }}</p>
-    <p class="brief">{{ plant.brief_description }}</p>
-    <p><strong>Native to:</strong> {{ plant.native_locations }}</p>
-    <p><strong>Is Edible:</strong> {% if plant.is_edible %} Yes {% else %} No {% endif %}</p>
-    <p><strong>Used For:</strong> {{ plant.used_for }}</p>
-</div>
+<div class="plant-detail-container">
+    <!-- Main Plant Details -->
+    <div class="plant-main">
+        <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="plant-main-image">
+        
+        <div class="plant-info">
+            <h1>{{ plant.name }}</h1>
+            <p class="category">{{ plant.get_category_display }}</p>
+            <p class="brief">{{ plant.about }}</p>
+            <p><strong>Native to:</strong><br> {{ plant.native_locations }}</p>
+            <p><strong>Is Edible:</strong> {% if plant.is_edible %} Yes {% else %} No {% endif %}</p>
+            <p><strong>Used For:</strong><br> {{ plant.used_for }}</p>
 
-<div class="related-plants">
-    <h2>Related Plants</h2>
-    <div class="related-plants-grid">
-        {% for related in related_plants %}
-        <div class="related-plant-card">
-            <img src="{{ related.main_image.url }}" alt="{{ related.name }}">
-            <h3>{{ related.name }}</h3>
-            <p>{{ related.brief_description }}</p>
-            <p class="category">{{ related.category }}</p>
+            <div class="plant-actions">
+                <a href="{% url 'plants:plant_update_view' plant.id %}" class="btn update-btn">Update</a>
+                <a href="{% url 'plants:plant_delete_view' plant.id %}" class="btn delete-btn">Delete</a>
+            </div>
         </div>
-        {% endfor %}
+    </div>
 
+    <!-- Related Plants Section -->
+    <div class="related-plants">
+        <h2>Related Plants</h2>
+        <div class="related-plants-grid">
+            {% for related in related_plants %}
+                <div class="related-plant-card">
+                    <img src="{{ related.image.url }}" alt="{{ related.name }}" class="related-plant-image">
+                    <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ plant.name }}</h3></a>
+                    <p>{{ related.about }}</p>
+                    <p class="category">{{ related.get_category_display }}</p>
+                </div>
+            {% empty %}
+                <p>No related plants found.</p>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
-
 
 {% endblock %}

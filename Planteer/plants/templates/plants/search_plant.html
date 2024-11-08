@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Search{%endblock %}
+
+{% block content %}
+{% if posts %}
+<div class="search-articale-page">
+    <h1>Top Results {{plant.count}}</h1>
+    <h5>results for: '{{request.GET.search}}'</h5></div>
+
+    {%else%}
+    <h3 class="not-found">No Results Found '{{request.GET.search}}'</h3>
+    {%endif%}
+
+<div class="article-grid-all">
+    {% for plant in plant%}
+    <div class="article-card-all">
+        <img src="{{plant.image.url}}" alt={{plant.name}} class="article-image-all">
+        <div class="all-articale-container">
+            <p class="article-date-all">{{ plant.about }}</p>
+            <p class="article-category-all" >{{  plant.category }}</p>
+        </div>
+        <a href="{% url 'main:post_detail_view' post.id %}"><h3 class="article-title-all">{{post.title}}</h3></a>          
+    </div>
+    {% endfor%}
+
+
+</div>
+
+{% endblock %}
+

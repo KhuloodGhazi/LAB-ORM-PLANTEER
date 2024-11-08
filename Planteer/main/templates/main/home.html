@@ -15,7 +15,7 @@
         
         <div class="search-form">
             <form class="form-container">
-                <input type="search" class="form-control" id="search" placeholder="Search For Plant...">
+                <input type="search" class="form-control" id="search" placeholder="Search For Plant..." value="{{request.GET.search}}" aria-label="Search" required minlength="3" >
                 <button type="submit" class="btn">Search</button>
             </form>
         </div>
@@ -40,7 +40,7 @@
         {% for plant in plant %}
         <div class="plant-card">
             <img src="{{plant.image.url}}" alt="{{plant.name}}">
-            <h3>{{ plant.name }}</h3>
+            <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ plant.name }}</h3></a>
             <p>{{ plant.about }}</p>
             <p class="category">{{ plant.category }}</p>
         </div>

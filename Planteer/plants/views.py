@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from .models import Plant
+from django.core.paginator import Paginator
+
 
 
 
@@ -38,27 +40,60 @@ def new_plants_view(request:HttpRequest):
 
 
 
-def plant_detail_view(request:HttpRequest):
+def plant_detail_view(request:HttpRequest, plant_id:int):
 
-    return render(request, 'plants/plant_detail.html')
-
-
-
-
-def plant_update_view(request:HttpRequest):
-
-    return render(request, 'plants/plant_update.html')
-
-
+    plant = get_object_or_404(Plant, pk=plant_id)
+    
+    related_plants = Plant.objects.filter(category=plant.category).exclude(id=plant_id)[:3]  
+    
+    return render(request, 'plants/plant_detail.html', {
+        "plant": plant,
+        "related_plants": related_plants
+    })
 
 
-def plant_delete_view(request:HttpRequest):
 
-    return render(request, 'plants/plant_delete.html')
+
+def plant_update_view(request:HttpRequest, plant_id:int):
+
+    plant = Plant.objects.get(pk=plant_id)
+    
+    if request.method == "POST":
+        plant.name=request.POST["name"],
+        plant.about=request.POST["about"],
+        plant.used_for=request.POST["used_for"],
+        if "plants_image" in request.FILES: plant.image=request.FILES["image"],
+        plant.native_locations=request.POST["native_locations"],
+        plant.category=request.POST["category"],
+        plant.is_edible=request.POST.get("is_edible") == "True"
+
+        plant.save()
+
+        return redirect("plants:plant_updated_view", plant_id=plant.id )
+
+    return render(request, 'plants/plant_update.html', {"plant":plant})
+
+
+
+
+def plant_delete_view(request:HttpRequest, plant_id:int):
+
+    plant = Plant.objects.get(pk=plant_id)
+    plant.delete()
+
+    return redirect("main:main_view")
+
+    #return render(request, 'plants/plant_delete.html')
 
 
 
 
 def search_plant_view(request:HttpRequest):
 
-    return render(request, 'plants/search_plant.html')
+    if "search" in request.GET and len(request.GET["search"]) >= 3:
+        plant = Plant.objects.filter(name__ontains=request.GET["search"])
+
+    else:
+        plant = []    
+
+    return render(request, 'plants/search_plant.html', {"plant":plant})
