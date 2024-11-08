@@ -37,12 +37,15 @@
     </div>
     
     <section class="plants-section">
+        {% for plant in plant %}
         <div class="plant-card">
-            <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
-            <h3>Plant 2</h3>
-            <p>Brief about plant</p>
-            <p>Tree</p>
+            <img src="{{plant.image.url}}" alt="{{plant.name}}">
+            <h3>{{ plant.name }}</h3>
+            <p>{{ plant.about }}</p>
+            <p class="category">{{ plant.category }}</p>
         </div>
+        {%endfor%}
+
     </section>
 </main>
 

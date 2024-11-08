@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from .models import Contact
+from plants.models import Plant
+
 
 
 # Create your views here.
 
 def main_view(request:HttpRequest):
 
-    return render(request, 'main/home.html')
+    plant = Plant.objects.all().order_by("-create_at")[0:3]
+
+    return render(request, 'main/home.html', {"plant":plant})
+
 
 
 

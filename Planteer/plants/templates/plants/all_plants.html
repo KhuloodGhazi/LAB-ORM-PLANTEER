@@ -6,13 +6,20 @@
 
 {% block content %}
 
-<div><h1 class="all-plants-page">All Plants</h1></div>
-<div class="plant-card">
-    <img src="{% static 'images/plant1.jpg' %}" alt="Plant 1">
-    <h3>Plant 2</h3>
-    <p>Brief about plant</p>
-    <p>Tree</p>
-</div>
+<div class="all-plants-container">
+    <h1>All Plants</h1>
+    <p class="subheading">Explore our plant database to learn more about various plants.</p>
+
+    <section class="all-plants-section">
+        {% for plant in plant %}
+            <div class="all-plant-card">
+                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="all-plant-image">
+                <h3>{{ plant.name }}</h3>
+                <p>{{ plant.about }}</p>
+                <p class="all-category">{{ plant.category }}</p>
+            </div>
+        {% endfor %}
+    </section>
 </div>
     
 

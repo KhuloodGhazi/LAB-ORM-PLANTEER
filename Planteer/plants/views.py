@@ -8,7 +8,9 @@ from .models import Plant
 
 def all_plants_view(request:HttpRequest):
 
-    return render(request, 'plants/all_plants.html')
+    plant = Plant.objects.all()
+
+    return render(request, 'plants/all_plants.html', {"plant":plant})
 
 
 
@@ -22,8 +24,9 @@ def new_plants_view(request:HttpRequest):
             used_for=request.POST["used_for"],
             image=request.FILES["image"],
             native_locations=request.POST["native_locations"],
-            category=request.POST["category"]
-        )
+            category=request.POST["category"],
+            is_edible=request.POST.get("is_edible") == "True"
+            )
 
         new_plant.save()
 

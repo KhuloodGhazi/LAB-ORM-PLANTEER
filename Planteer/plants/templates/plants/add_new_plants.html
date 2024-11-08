@@ -17,28 +17,28 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="plant-name">Plant Name</label>
-                <input type="text" id="plant-name" name="plant-name" placeholder="Enter plant name" required>
+                <input type="text" id="plant-name" name="name" placeholder="Enter Plant Name" required>
             </div>
             
             <div class="form-group">
                 <label for="Native">Native To:</label>
-                <input type="text" id="Native" name="Native" placeholder="Enter The Plant Country (Where it is Originally from?)">
+                <input type="text" id="Native" name="native_locations" placeholder="Enter The Plant Country (Where it is Originally from?)">
             </div>
             
             <div class="form-group">
                 <label>Is Edible:</label>
                 <div class="check-container">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault2" value="Fales" checked>
                     <label class="form-check-label" for="flexRadioDefault2">No</label>
 
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault1" value="True">
                     <label class="form-check-label" for="flexRadioDefault1">Yes</label>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="useability">Used For:</label>
-                <input type="text" id="useability" name="useability" placeholder="Enter What The Plant Used For" required>
+                <input type="text" id="useability" name="used_for" placeholder="Enter What The Plant Used For" required>
             </div>
             
             <!-- Category -->
@@ -56,7 +56,7 @@
             
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" placeholder="Enter a description of the plant" rows="4"></textarea required>
+                <textarea id="description" name="about" placeholder="Enter a Description of The Plant" rows="4" required></textarea>
             </div>
             
             <div class="form-group">
@@ -69,10 +69,4 @@
     </div>
 </div>
   
-
-
-
-
-
-
 {% endblock %}
