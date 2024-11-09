@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Plant Added Successfully{% endblock %}
+
+{% block content %}
+<div class="success-message-container">
+    <h1>Plant Added Successfully!</h1>
+    <p>Your plant has been added.</p>
+    
+    <div class="button-container">
+        <a href="{% url 'plants:new_plants_view' %}" class="btn btn-primary">Create Another Post</a>
+        <a href="{% url 'main:main_view' %}" class="btn btn-secondary">Go to Home</a>
+    </div>
+</div>
+{% endblock %}

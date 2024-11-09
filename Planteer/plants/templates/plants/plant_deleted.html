@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Plant Deleted Successfully{% endblock %}
+
+{% block content %}
+<div class="success-message-container">
+    <h1>Plant Deleted Successfully!</h1>
+    <p>Your plant has been deleted.</p>
+    
+    <div class="button-container">
+        <a href="{% url 'main:main_view' %}" class="btn btn-secondary">Go to Home</a>
+    </div>
+</div>
+{% endblock %}

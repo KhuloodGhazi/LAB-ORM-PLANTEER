@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}New Plant{%endblock%}
+{% block title %}{{ plant.name }}{%endblock%}
 
 {% block content %}
 
@@ -13,11 +13,11 @@
     
     <div class="add-plant-container">
         
-        <form class="add-plant-form" action="{% url 'plants:new_plants_view'%}" method="post" enctype="multipart/form-data">
+        <form class="add-plant-form" action="{% url 'plants:plant_update_view' plant.id%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="plant-name">Plant Name</label>
-                <input type="text" id="plant-name" name="name" placeholder="Enter Plant Name" value="{{plant.name}}" required>
+                <input type="text" id="plant-name" name="name" placeholder="Enter Plant Name" value="{{plant.name}}">
             </div>
             
             <div class="form-group">
@@ -28,43 +28,46 @@
             <div class="form-group">
                 <label>Is Edible:</label>
                 <div class="check-container">
-                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault2" value="Fales" checked>
+                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault2" value="Fales" {% if not plant.is_edible %} checked {% endif %}>
                     <label class="form-check-label" for="flexRadioDefault2">No</label>
 
-                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault1" value="True">
+                    <input class="form-check-input" type="radio" name="is_edible" id="flexRadioDefault1" value="True" {% if plant.is_edible %} checked {% endif %}>
                     <label class="form-check-label" for="flexRadioDefault1">Yes</label>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="useability">Used For:</label>
-                <input type="text" id="useability" name="used_for" placeholder="Enter What The Plant Used For" value="{{plant.used_for}}" required>
+                <input type="text" id="useability" name="used_for" placeholder="Enter What The Plant Used For" value="{{plant.used_for}}" >
             </div>
             
             <!-- Category -->
             <div class="form-group">
                 <label for="category">Category</label>
-                <select id="category" name="category" value="{{plant.category}}">
-                    <option value="Flower">Flower</option>
-                    <option value="Tree">Tree</option>
-                    <option value="Shrub">Shrub</option>
-                    <option value="Herb">Herb</option>
-                    <option value="Vegetable">Vegetable</option>
-                    <option value="Fruit">Fruit</option>
+                <select id="category" name="category">
+                    <option value="Flower" {% if plant.category == "Flower"%} selected {% endif%}>Flower</option>
+                    <option value="Tree" {% if plant.category == "Tree"%} selected {% endif%}>Tree</option>
+                    <option value="Shrub" {% if plant.category == "Shrub"%} selected {% endif%}>Shrub</option>
+                    <option value="Herb" {% if plant.category == "Herb"%} selected {% endif%}>Herb</option>
+                    <option value="Vegetable" {% if plant.category == "Vegetable"%} selected {% endif%}>Vegetable</option>
+                    <option value="Fruit" {% if plant.category == "Fruit"%} selected {% endif%}>Fruit</option>
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="about" placeholder="Enter a Description of The Plant" rows="4" value="plant.about" required></textarea>
+                <textarea id="description" name="about" placeholder="Enter a Description of The Plant" rows="4">{{plant.about}}</textarea>
             </div>
             
             <div class="form-group">
-                <label for="image">Upload Image</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
+                <label for="image">Upload Image</label><br>
+                <div class="update-ima">
+                    <img src="{{ plant.image.url}}" alt="update-ima-2" class="update-ima-2"><br>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
             </div>
             
-            <button type="submit" class="submit-button">Add Plant</button>
+            <button type="submit" class="submit-button">Update Plant</button>
         </form>
     </div>
 </div>

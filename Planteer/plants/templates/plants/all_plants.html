@@ -12,17 +12,73 @@
         <p class="subheading">Explore our plant database to learn more about various plants.</p>
     </div>
 
-    <section class="all-plants-section">
-        {% for plant in plant %}
-            <div class="all-plant-card">
-                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="all-plant-image">
-                <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ plant.name }}</h3></a>
-                <p>{{ plant.about }}</p>
-                <p class="all-category">{{ plant.category }}</p>
-            </div>
-        {% endfor %}
-    </section>
-</div>
+        <!-- Search and Filter Form -->
+        <div class="search-form-all">
+            <form class="form-container-all" method="get" action="{% url 'plants:all_plants_view' %}">
+                <!-- Search Field -->
+                <input type="search" name="search" class="form-control-all" placeholder="Search for Plant..." value="{{ search_query }}" aria-label="Search" minlength="3">
+                
+                <!-- Category Filter -->
+                <select name="category" aria-label="Category Filter">
+                    <option value="">All Categories</option>
+                    <option value="Flower" {% if category_filter == 'Flower' %}selected{% endif %}>Flower</option>
+                    <option value="Tree" {% if category_filter == 'Tree' %}selected{% endif %}>Tree</option>
+                    <option value="Shrub" {% if category_filter == 'Shrub' %}selected{% endif %}>Shrub</option>
+                    <option value="Herb" {% if category_filter == 'Herb' %}selected{% endif %}>Herb</option>
+                    <option value="Vegetable" {% if category_filter == 'Vegetable' %}selected{% endif %}>Vegetable</option>
+                    <option value="Fruit" {% if category_filter == 'Fruit' %}selected{% endif %}>Fruit</option>
+                </select>
     
+                <!-- Edibility Filter -->
+                <select name="is_edible" aria-label="Edibility Filter">
+                    <option value="">All Plants</option>
+                    <option value="True" {% if is_edible_filter == 'True' %}selected{% endif %}>Edible</option>
+                    <option value="False" {% if is_edible_filter == 'False' %}selected{% endif %}>Not Edible</option>
+                </select>
+    
+                <!-- Submit Button -->
+                <button type="submit" class="search-btn-all">Search</button>
+            </form>
+        </div>
+    
+        <!-- Plants Listing Section -->
+        <section class="all-plants-section">
+            {% for plant in page_obj %}
+                <div class="all-plant-card">
+                    <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="all-plant-image">
+                    <a href="{% url 'plants:plant_detail_view' plant.id %}"><h3>{{ plant.name }}</h3></a>
+                    <p>{{ plant.about }}</p>
+                    <p class="all-category">{{ plant.category }}</p>
+                    <p>{% if plant.is_edible %} Edible {% else %} Not Edible {% endif %}</p>
+                </div>
+            {% empty %}
+            <p>No plants found matching your criteria.</p>
+            {% endfor %}
+        </section>
+
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if is_edible_filter %}&is_edible={{ is_edible_filter }}{% endif %}">Previous</a>
+            {% endif %}
+        
+            {% for num in page_obj.paginator.page_range %}
+                {% if num > page_obj.number|add:-2 and num < page_obj.number|add:2 %}
+                    {% if page_obj.number == num %}
+                        <span class="current-page">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if is_edible_filter %}&is_edible={{ is_edible_filter }}{% endif %}">{{ num }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if is_edible_filter %}&is_edible={{ is_edible_filter }}{% endif %}">Next</a>
+            {% endif %}
+        </div>
+        
+
+
+</div>
+
 
 {% endblock %}

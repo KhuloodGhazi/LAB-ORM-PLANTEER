@@ -14,9 +14,9 @@
         </nav>
         
         <div class="search-form">
-            <form class="form-container">
-                <input type="search" class="form-control" id="search" placeholder="Search For Plant..." value="{{request.GET.search}}" aria-label="Search" required minlength="3" >
-                <button type="submit" class="btn">Search</button>
+            <form class="form-container" method="get" action="{% url 'plants:search_plant_view' %}">
+                <input type="search" name="search" class="form-control" id="search" placeholder="Search For Plant..." value="{{ request.GET.search }}" aria-label="Search" required minlength="3">
+                <button type="submit" class="search-btn">Search</button>
             </form>
         </div>
     </div>
