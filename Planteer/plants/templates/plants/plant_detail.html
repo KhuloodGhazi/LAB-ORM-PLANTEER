@@ -33,7 +33,7 @@
             {% for related in related_plants %}
                 <div class="related-plant-card">
                     <img src="{{ related.image.url }}" alt="{{ related.name }}" class="related-plant-image">
-                    <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ plant.name }}</h3></a>
+                    <a href="{% url 'plants:plant_detail_view' plant.id%}"><h3>{{ related.name }}</h3></a>
                     <p>{{ related.about }}</p>
                     <p class="category">{{ related.get_category_display }}</p>
                 </div>

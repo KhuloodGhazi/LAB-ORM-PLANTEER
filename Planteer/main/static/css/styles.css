@@ -384,13 +384,14 @@ main {
 .messages-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 5px;
 }
 
 .message-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: flex-start;
-  gap: 15px;
   padding: 20px 40px;
   max-width: 400px;
   background-color: #f9f9f9;
